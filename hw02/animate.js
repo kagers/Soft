@@ -3,12 +3,16 @@
 var c = document.getElementById("playground");
 var ctx = c.getContext("2d");
 
-var start  = document.getElementById("start");
+var start = document.getElementById("start");
 var stop  = document.getElementById("stop");
+var dvd   = document.getElementById("dvd");
 
 var r = 1;
 var growing = true;
 var requestID;
+
+var logo = new Image();
+logo.src = "logo_dvd.jpg";
 
 var clr = function clr() {
     ctx.clearRect(0,0,538,538); // clears everything in the canvas
@@ -34,9 +38,15 @@ var anime = function anime(e) {
 };
 
 var no = function no() {
-    console.log(requestID);
+    //console.log(requestID);
     window.cancelAnimationFrame(requestID);
 }
 
-start.addEventListener("click",anime); // button triggers animation
-stop.addEventListener("click",no); // button triggers animation
+var screensave = function screensave() {
+    ctx.clearRect(0,0,538,538);
+    ctx.drawImage(logo,x,y,w,h);
+}
+
+start.addEventListener("click", anime); // button triggers animation
+stop.addEventListener("click", no); // button stops animation
+dvd.addEventListener("click", screensave); // button dvds animation
