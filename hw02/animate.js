@@ -11,6 +11,9 @@ var r = 1;
 var growing = true;
 var requestID;
 
+var x = 0;
+var y = 0;
+
 var logo = new Image();
 logo.src = "logo_dvd.jpg";
 
@@ -43,8 +46,9 @@ var no = function no() {
 }
 
 var screensave = function screensave() {
+    no();
     ctx.clearRect(0,0,538,538);
-    ctx.drawImage(logo,x,y,w,h);
+    ctx.drawImage(logo,x,y,logo.width/2,logo.height/2);
 }
 
 start.addEventListener("click", anime); // button triggers animation
