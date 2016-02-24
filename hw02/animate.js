@@ -11,8 +11,10 @@ var r = 1;
 var growing = true;
 var requestID;
 
-var x = 0;
-var y = 0;
+var x = 100;
+var y = 100;
+var dx = 1;
+var dy = 1;
 
 var logo = new Image();
 logo.src = "logo_dvd.jpg";
@@ -46,9 +48,17 @@ var no = function no() {
 }
 
 var screensave = function screensave() {
-    no();
+    if (x==0 || x+(logo.width/4)==538) {
+        dx*=-1;
+    }
+    if (y==0 || y+(logo.height/4)==538) {
+        dy*=-1;
+    }
+    x+=dx;
+    y+=dy;
     ctx.clearRect(0,0,538,538);
-    ctx.drawImage(logo,x,y,logo.width/2,logo.height/2);
+    ctx.drawImage(logo,x,y,logo.width/4,logo.height/4);
+    requestID = window.requestAnimationFrame(screensave); // repeat
 }
 
 start.addEventListener("click", anime); // button triggers animation
