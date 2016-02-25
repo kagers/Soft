@@ -11,14 +11,6 @@ var r = 1;
 var growing = true;
 var requestID;
 
-var x = 100;
-var y = 100;
-var dx = 1;
-var dy = 1;
-
-var logo = new Image();
-logo.src = "logo_dvd.jpg";
-
 var clr = function clr() {
     ctx.clearRect(0,0,538,538); // clears everything in the canvas
 };
@@ -48,17 +40,32 @@ var no = function no() {
 }
 
 var screensave = function screensave() {
-    if (x==0 || x+(logo.width/4)==538) {
-        dx*=-1;
+    window.cancelAnimationFrame( requestID ); // stops another already running process
+
+    // var inits so pressing the button actually restarts it instead of speeding up
+    var x = 100;
+    var y = 100;
+    var dx = 1;
+    var dy = 1;
+
+    var move = function move() {
+        var logo = new Image();
+        logo.src = "logo_dvd.jpg";
+
+        if (x==0 || x+(logo.width/4)==538) {
+            dx*=-1;
+        }
+        if (y==0 || y+(logo.height/4)==538) {
+            dy*=-1;
+        }
+        x+=dx;
+        y+=dy;
+        ctx.clearRect(0,0,538,538);
+        ctx.drawImage(logo,x,y,logo.width/4,logo.height/4);
+        requestID = window.requestAnimationFrame(move); // repeat
     }
-    if (y==0 || y+(logo.height/4)==538) {
-        dy*=-1;
-    }
-    x+=dx;
-    y+=dy;
-    ctx.clearRect(0,0,538,538);
-    ctx.drawImage(logo,x,y,logo.width/4,logo.height/4);
-    requestID = window.requestAnimationFrame(screensave); // repeat
+
+    move();
 }
 
 start.addEventListener("click", anime); // button triggers animation
