@@ -23,3 +23,10 @@ var clicked = function(e) {
 };
 
 pic.addEventListener("click", clicked);
+
+var intervalID = window.setInterval(drawDot, 16);
+
+document.getElementByTagName("circle")[0];
+
+radius = parseInt(c.getAttribute("r"));
+c.setAttribute("r", radius.toString);
