@@ -1,32 +1,49 @@
+// Katherine Gershfeld
+
 var pic = document.getElementById("vimage");
 
-var change = function(e) {
-    e.preventDefault();
-    this.setAttribute("fill", "green");
-};
+var r = 10;
+var intervalID;
+var grow = true;
 
-var drawDot = function(x,y) {
+var drawDot = function() {
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    c.setAttribute("cx", x);
-    c.setAttribute("cy", y);
-    c.setAttribute("r", "30");
+    c.setAttribute("id", "circle");
+    c.setAttribute("cx", 250);
+    c.setAttribute("cy", 250);
+    c.setAttribute("r", r);
     c.setAttribute("fill", "yellow");
     c.setAttribute("stroke", "black");
-    c.addEventListener("click", change);
     pic.appendChild(c);
 };
 
-var clicked = function(e) {
-    if (e.toElement == this) {
-	drawDot(e.offsetX,e.offsetY);
-    }
+var go = function(e) {
+    window.clearInterval(intervalID);
+
+    var gorun = function(e){
+	drawDot();
+	c = document.getElementById("circle");
+	c.setAttribute("r", r.toString());
+	
+	if (r <= 0 || r >= 250) {
+	    grow = !grow;
+	}
+
+	if (grow) {
+	    r++;
+	} else {
+	    r--;
+	}
+    };
+    intervalID = window.setInterval(gorun, 16);
 };
 
-pic.addEventListener("click", clicked);
+var stop = function stop(e){
+    e.preventDefault();
+    window.clearInterval(intervalID);
+};
 
-var intervalID = window.setInterval(drawDot, 16);
+document.getElementById("start").addEventListener("click", go);
+document.getElementById("stop").addEventListener("click", stop);
 
-document.getElementByTagName("circle")[0];
 
-radius = parseInt(c.getAttribute("r"));
-c.setAttribute("r", radius.toString);
