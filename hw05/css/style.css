@@ -1,8 +1,22 @@
-.chart div {
+.pledged div {
   font: 10px sans-serif;
-  background-color:steelblue;
+  background-color:blue;
   text-align:right;
   padding:3px;
   margin:2px;
   color:white;
+  float:left;
+  width:48%;
+  clear:left;
+}
+.unpledged div {
+  font: 10px sans-serif;
+  background-color:gray;
+  text-align:left;
+  padding:3px;
+  margin:2px;
+  color:white;
+  float:right;
+  width:48%;
+  clear:right;
 }
