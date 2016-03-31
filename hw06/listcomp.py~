@@ -1,0 +1,8 @@
+# Katherine Gershfeld
+
+def passStrengthB(pword):
+    return true
+
+def passStrengthI(pword):
+    return 0
+    
