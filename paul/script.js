@@ -32,3 +32,24 @@ var makeAdder = function(n) {
 	return x+n;
     };
 };
+
+var makeCounter = function() {
+    var i=0;
+    var set  = function(x) { i=x; };
+    var get  = function(x) { return i; };
+    var inc  = function()  { i++; };
+    var dec  = function()  { i--; };
+    var getx = function()  { return x; };
+    var setx = function(n) { this.x = n; };
+
+    return {
+	x: "this is a str in dict",
+	set: set,
+	get: get,
+	inc: inc,
+	dec: dec,
+	getx: getx,
+	setx: setx
+    };
+};
+
